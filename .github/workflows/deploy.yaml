@@ -1,4 +1,4 @@
-name: Deploy Terraform
+name: 'Terraform CI'
 
 on:
   push:
@@ -7,6 +7,7 @@ on:
 
 jobs:
   terraform:
+    name: 'Terraform'
     runs-on: ubuntu-latest
 
     steps:
@@ -15,20 +16,24 @@ jobs:
 
       - name: Set up Terraform
         uses: hashicorp/setup-terraform@v1
-        with:
-          terraform_version: 1.1.2
-
-      - name: Configure Google Cloud CLI
-        uses: GoogleCloudPlatform/github-actions/setup-gcloud@v1.0.0
-        with:
+        
+      - name: Terraform Init
+        run: terraform init
+        env:
           service_account_key: ${{ secrets.GCP_SA_KEY }}
           project_id: ${{ secrets.GCP_PROJECT_ID }}
 
-      - name: Terraform Init
-        run: terraform init
+      - name: Terraform Format
+        run: terraform fmt -check 
 
       - name: Terraform Plan
         run: terraform plan
+        env:
+          service_account_key: ${{ secrets.GCP_SA_KEY }}
+          project_id: ${{ secrets.GCP_PROJECT_ID }}
 
       - name: Terraform Apply
         run: terraform apply -auto-approve
+        env:
+          service_account_key: ${{ secrets.GCP_SA_KEY }}
+          project_id: ${{ secrets.GCP_PROJECT_ID }}
