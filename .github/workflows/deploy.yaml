@@ -18,10 +18,8 @@ jobs:
         uses: hashicorp/setup-terraform@v1
 
       - name: Terraform Init
-        run: |
-          terraform init
-          echo "TF_VAR_service_account_key=${{ secrets.GCP_SA_KEY }}" >> $GITHUB_ENV
-          echo "TF_VAR_project_id=${{ secrets.GCP_PROJECT_ID }}" >> $GITHUB_ENV
+        run: terraform init
+        
 
       - name: Terraform Format
         run: terraform fmt -check 
