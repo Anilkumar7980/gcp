@@ -1,16 +1,26 @@
-jobs:
-  my_job:
-    permissions:
-      contents: 'read'
-      id-token: 'write'
-    steps:
-      - uses: 'google-github-actions/auth@v2'
-        with:
-          workload_identity_provider: 'projects/cicd-project-412206/locations/asia-south1/providers/google'
-          service_account: 'gt-582@cicd-project-412206.iam.gserviceaccount.com'
-      - name: 'Set up Cloud SDK'
-        uses: 'google-github-actions/setup-gcloud@v0'
-        with:
-          version: '>= 363.0.0'
-      - name: 'Use gcloud CLI'
-        run: 'gcloud info'
+name: 'Configure Google Cloud CLI'
+description: 'Sets up Google Cloud CLI with the provided service account key and project ID.'
+
+runs:
+  using: 'docker'
+  image: 'hashicorp/setup-terraform:latest'
+
+inputs:
+  service_account_key:
+    description: 'The service account key JSON file.'
+    required: true
+  project_id:
+    description: 'The Google Cloud project ID.'
+    required: true
+
+outputs:
+  none
+
+branding:
+  icon: 'cloud'
+  color: 'blue'
+
+permissions:
+  contents: 'read'
+  packages: 'write'
+  actions: 'write'
