@@ -39,9 +39,11 @@ variable "gke_num_nodes" {
 }
 
 variable "gke_node_type" {
-  type = string
-  default = n1-standard-1
+  description = "The machine type for GKE nodes"
+  type        = string
+  default     = "n1-standard-1"
 }
+
 
 
 
