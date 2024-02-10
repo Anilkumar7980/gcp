@@ -1,0 +1,16 @@
+jobs:
+  my_job:
+    permissions:
+      contents: 'read'
+      id-token: 'write'
+    steps:
+      - uses: 'google-github-actions/auth@v2'
+        with:
+          workload_identity_provider: 'projects/cicd-project-412206/locations/asia-south1/providers/google'
+          service_account: 'gt-582@cicd-project-412206.iam.gserviceaccount.com'
+      - name: 'Set up Cloud SDK'
+        uses: 'google-github-actions/setup-gcloud@v0'
+        with:
+          version: '>= 363.0.0'
+      - name: 'Use gcloud CLI'
+        run: 'gcloud info'
