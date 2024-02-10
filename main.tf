@@ -71,6 +71,7 @@ resource "google_container_cluster" "gke_cluster" {
     machine_type = var.gke_node_type
     initial_node_count = var.gke_num_nodes
   }
+}
 
 # Container registry
 resource "google_container_registry" "registry" {
