@@ -114,23 +114,6 @@ resource "google_compute_firewall" "allow-ssh-new" {
 }
 
 
-
-
-## Create IAP SSH permissions for your test instance
-
-resource "google_project_iam_member" "project" {
-  project = var.project_id
-  role    = "roles/iap.tunnelResourceAccessor"
-  member  = "serviceAccount:ci-cd-615@cicd-project-412206.iam.gserviceaccount.com"
-}
-
-# Enable Service Networking API
-resource "google_project_service" "service_networking" {
-  project = var.project_id
-  service = "servicenetworking.googleapis.com"
-}
-
-
 # ... (Existing resources)
 
 # PostgreSQL database
