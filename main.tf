@@ -25,6 +25,7 @@ resource "google_compute_subnetwork" "private_subnet" {
 resource "google_compute_address" "jumpbox_static_ip" {
   name   = "jumpbox-static-ip"
   region = var.region
+  network = var.vpc_name
 }
 
 # Windows 10 jumpbox instance
