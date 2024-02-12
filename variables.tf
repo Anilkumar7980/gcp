@@ -4,6 +4,7 @@ variable "project_id" {
 
 variable "region" {
   type = string
+  default = "asia-south1"
 }
 
 variable "zone" {
@@ -41,13 +42,11 @@ variable "gke_num_nodes" {
 variable "gke_node_type" {
   description = "The machine type for GKE nodes"
   type        = string
-  default     = "n1-standard-1"
+  default     = "e2-standard-2"
 }
 
+variable "google_application_credentials" {
+  type        = any
+  description = "C:/Users/danil/Downloads/key.json"
+}
 
-
-
-# ... (Add any additional variables for environment variables or other settings)
-
-
-# Additional variables for PostgreSQL credentials, GKE cluster settings, etc.
