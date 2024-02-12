@@ -1,5 +1,5 @@
 # VPC
-resource "google_compute_network" "vpc" {
+resource "google_compute_network" "vpc_name" {
   name    = var.vpc_name
   project = var.project_id
   
